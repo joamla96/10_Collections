@@ -7,7 +7,7 @@ namespace _10_Collections {
 
 		public List<IAsset> Assets {
 			get { return this.assets; }
-			set { throw new NotSupportedException("Unable to add an asset to the returned collection. Collection is ReadOnly"); }
+			//set { throw new NotSupportedException("Unable to add an asset to the returned collection. Collection is ReadOnly"); }
 		}
 
 		public Portfolio(List<IAsset> stocks) {
