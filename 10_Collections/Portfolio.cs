@@ -1,27 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace _10_Collections {
 	internal class Portfolio : IAsset {
-		private List<IAsset> assets;
-
-		public List<IAsset> Assets {
-			get { return this.assets; }
-			//set { throw new NotSupportedException("Unable to add an asset to the returned collection. Collection is ReadOnly"); }
-		}
+		private List<IAsset> Assets;
 
 		public Portfolio(List<IAsset> stocks) {
-			this.assets = stocks;
+			this.Assets = stocks;
 		}
 
 		public Portfolio() {
-			assets = new List<IAsset>();
+			Assets = new List<IAsset>();
 		}
 
 		public double GetTotalValue() {
 			double Sum = 0;
 
-			foreach (IAsset stock in assets) {
+			foreach (IAsset stock in Assets) {
 				Sum += stock.GetValue();
 			}
 
@@ -29,7 +25,7 @@ namespace _10_Collections {
 		}
 
 		public void AddAsset(IAsset Stock) {
-			this.assets.Add(Stock);
+			this.Assets.Add(Stock);
 		}
 
 		public string GetName() {
@@ -41,12 +37,12 @@ namespace _10_Collections {
 		}
 
 		internal IList<IAsset> GetAssets() {
-			return this.Assets;
+			return this.Assets.AsReadOnly();
 		}
 
 		internal IAsset GetAssetByName(string Sym) {
 			IAsset ReturnAsset = null;
-			foreach(IAsset Asset in assets) {
+			foreach(IAsset Asset in Assets) {
 				if (Asset.GetName() == Sym) {
 					ReturnAsset = Asset; break;
 				}
@@ -56,13 +52,13 @@ namespace _10_Collections {
 		}
 
 		internal IList<IAsset> GetAssetsSortedByName() {
-			assets.Sort(new StockNameComparator());
-			return assets;
+			Assets.Sort(new StockNameComparator());
+			return Assets;
 		}
 
 		internal IList<IAsset> GetAssetsSortedByValue() {
-			assets.Sort(new StockValueComparator());
-			return assets;
+			Assets.Sort(new StockValueComparator());
+			return Assets;
 		}
 	}
 }

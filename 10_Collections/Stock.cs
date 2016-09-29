@@ -8,6 +8,8 @@
 		public double PricePerShare { get { return this.pricePerShare; } set { this.pricePerShare = value; } }
 		public int NumShares { get { return this.numShares; } set { this.numShares = value; } }
 
+		public int Id { get; internal set; } = 0;
+
 		public Stock(string Sym, double Pps, int Ns) {
 			this.symbol = Sym;
 			this.pricePerShare = Pps;
